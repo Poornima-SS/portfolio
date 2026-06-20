@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Poornima S S — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0c10;
+      --surface:  #111318;
+      --card:     #161a22;
+      --border:   #1f2533;
+      --accent:   #7c5cfc;
+      --accent2:  #c084fc;
+      --glow:     rgba(124,92,252,0.18);
+      --text:     #e8eaf0;
+      --muted:    #8891a8;
+      --white:    #ffffff;
+      --radius:   14px;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'Space Grotesk', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 60px;
+      background: rgba(10,12,16,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-head);
+      font-size: 1.3rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.88rem; font-weight: 500; letter-spacing: 0.4px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px 60px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%; filter: blur(90px); pointer-events: none;
+    }
+    .orb1 { width: 500px; height: 500px; background: rgba(124,92,252,0.22); top: -100px; right: -80px; }
+    .orb2 { width: 350px; height: 350px; background: rgba(192,132,252,0.12); bottom: 0; left: -60px; }
+
+    .hero-inner { max-width: 760px; position: relative; z-index: 1; }
+    .hero-tag {
+      display: inline-block;
+      padding: 6px 16px; border-radius: 99px;
+      background: var(--glow); border: 1px solid rgba(124,92,252,0.35);
+      font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--accent2); margin-bottom: 28px;
+    }
+    .hero-name {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -2px; color: var(--white);
+      margin-bottom: 12px;
+    }
+    .hero-name span {
+      background: linear-gradient(120deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-tagline {
+      font-size: 1.15rem; color: var(--muted); margin-bottom: 36px; max-width: 540px;
+    }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px; border-radius: 99px;
+      font-family: var(--font-body); font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; border: none; transition: all 0.22s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: var(--white);
+      box-shadow: 0 0 24px var(--glow);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(124,92,252,0.4); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent2); }
+
+    .hero-contact {
+      margin-top: 52px;
+      display: flex; gap: 28px; flex-wrap: wrap;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--muted); font-size: 0.87rem;
+    }
+    .contact-item a { color: var(--muted); text-decoration: none; }
+    .contact-item a:hover { color: var(--accent2); }
+    .contact-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; flex-shrink: 0;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 60px; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800; letter-spacing: -1px;
+      color: var(--white); margin-bottom: 48px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 60px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .about-text { color: var(--muted); font-size: 1rem; line-height: 1.8; }
+    .about-text strong { color: var(--text); }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 20px;
+      transition: border-color 0.22s;
+    }
+    .stat-card:hover { border-color: var(--accent); }
+    .stat-num {
+      font-family: var(--font-head); font-size: 2rem; font-weight: 800;
+      color: var(--accent2);
+    }
+    .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; }
+    .skill-chip {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 16px;
+      text-align: center; font-size: 0.88rem; font-weight: 500;
+      color: var(--text); transition: all 0.22s; cursor: default;
+    }
+    .skill-chip:hover {
+      border-color: var(--accent); color: var(--accent2);
+      box-shadow: 0 0 16px var(--glow);
+      transform: translateY(-3px);
+    }
+    .skill-chip .skill-icon { font-size: 1.6rem; margin-bottom: 8px; display: block; }
+
+    /* ── PROJECT ── */
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) * 1.5); padding: 40px;
+      transition: border-color 0.22s, box-shadow 0.22s;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 36px var(--glow);
+    }
+    .project-eyebrow {
+      font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin-bottom: 16px;
+    }
+    .project-title {
+      font-family: var(--font-head); font-size: 1.7rem; font-weight: 800;
+      color: var(--white); margin-bottom: 16px; letter-spacing: -0.5px;
+    }
+    .project-desc { color: var(--muted); font-size: 0.97rem; line-height: 1.75; margin-bottom: 28px; }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tech-tag {
+      padding: 6px 14px; border-radius: 99px;
+      background: rgba(124,92,252,0.12); border: 1px solid rgba(124,92,252,0.3);
+      font-size: 0.8rem; color: var(--accent2); font-weight: 500;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-list { display: flex; flex-direction: column; gap: 20px; }
+    .edu-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 32px;
+      display: grid; grid-template-columns: 90px 1fr;
+      gap: 24px; align-items: center;
+      transition: border-color 0.22s;
+    }
+    .edu-card:hover { border-color: var(--accent); }
+    .edu-year {
+      font-family: var(--font-head); font-size: 1.25rem; font-weight: 800;
+      color: var(--accent); text-align: center; line-height: 1.2;
+    }
+    .edu-degree { font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .edu-institution { color: var(--muted); font-size: 0.9rem; }
+    .edu-score {
+      margin-top: 8px;
+      display: inline-block; padding: 3px 12px; border-radius: 99px;
+      background: rgba(124,92,252,0.12); border: 1px solid rgba(124,92,252,0.25);
+      font-size: 0.78rem; color: var(--accent2); font-weight: 500;
+    }
+
+    /* ── STRENGTHS ── */
+    .strengths-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .strength-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 20px;
+      transition: all 0.22s;
+    }
+    .strength-card:hover {
+      border-color: var(--accent); transform: translateY(-3px);
+      box-shadow: 0 8px 28px var(--glow);
+    }
+    .strength-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .strength-title { font-weight: 600; color: var(--white); font-size: 0.95rem; margin-bottom: 6px; }
+    .strength-desc { color: var(--muted); font-size: 0.83rem; line-height: 1.5; }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 100px 60px;
+      max-width: 100%;
+    }
+    .contact-cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 48px; }
+    .contact-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 36px;
+      text-align: center; min-width: 180px; transition: all 0.22s;
+      text-decoration: none;
+    }
+    .contact-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 28px var(--glow); }
+    .contact-card-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .contact-card-label { color: var(--muted); font-size: 0.78rem; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 4px; }
+    .contact-card-val { color: var(--text); font-size: 0.9rem; font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 36px 60px;
+      color: var(--muted); font-size: 0.82rem;
+    }
+    footer span { color: var(--accent2); }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(26px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 18px; }
+      section { padding: 70px 24px; }
+      #hero { padding: 100px 24px 60px; }
+      .divider { margin: 0 24px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .edu-card { grid-template-columns: 1fr; gap: 10px; }
+      .edu-year { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PSS</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#project">Project</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">✦ Open to Opportunities</div>
+    <h1 class="hero-name">Poornima<br/><span>S S</span></h1>
+    <p class="hero-tagline">BCA Graduate &amp; Web Developer — passionate about building intuitive, purpose-driven web experiences from Karnataka.</p>
+    <div class="hero-cta">
+      <a href="#project" class="btn btn-primary">View My Project →</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-contact">
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <span>8197730480</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <a href="mailto:PoorniPoornima655@gmail.com">PoorniPoornima655@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <span>Hole Narasipur, Karnataka</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="fade-in">
+    <div class="section-label">Who I Am</div>
+    <div class="section-title">About Me</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm <strong>Poornima S S</strong>, a recent BCA graduate from Government First Grade College for Women, Holenarsipura. I'm a <strong>dedicated and quick learner</strong> driven by a desire to build meaningful digital solutions.</p>
+        <br/>
+        <p>My goal is to associate with a <strong>progressive organization</strong> where I can apply my skills, grow professionally, and contribute to impactful projects. I believe in <em>"creating excellence in every step."</em></p>
+        <br/>
+        <p>I speak <strong>Kannada and English</strong>, and I'm actively looking for opportunities where I can kick-start my career in web development.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">BCA</div>
+          <div class="stat-label">Degree — 2025</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">85%</div>
+          <div class="stat-label">SSLC Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Live Web Project</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Technologies Used</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="fade-in">
+    <div class="section-label">What I Work With</div>
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-chip"><span class="skill-icon">🌐</span>HTML</div>
+      <div class="skill-chip"><span class="skill-icon">🎨</span>CSS</div>
+      <div class="skill-chip"><span class="skill-icon">⚡</span>JavaScript</div>
+      <div class="skill-chip"><span class="skill-icon">🅱️</span>Bootstrap</div>
+      <div class="skill-chip"><span class="skill-icon">🐘</span>PHP</div>
+      <div class="skill-chip"><span class="skill-icon">🗄️</span>MySQL</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECT -->
+<section id="project">
+  <div class="fade-in">
+    <div class="section-label">What I've Built</div>
+    <div class="section-title">Featured Project</div>
+    <div class="project-card">
+      <div class="project-eyebrow">Web Application · 2025</div>
+      <div class="project-title">🐾 Rescue Paws</div>
+      <div class="project-desc">
+        A web-based platform dedicated to rescuing stray animals — dogs, cats, and more — and connecting them with loving homes. Rescue Paws streamlines the process of animal intake, care tracking, and adoption, making it easier for good-hearted owners to find their perfect companion while giving animals the safety they deserve.
+      </div>
+      <div class="tech-tags">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">Bootstrap</span>
+        <span class="tech-tag">PHP</span>
+        <span class="tech-tag">MySQL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="fade-in">
+    <div class="section-label">Academic Background</div>
+    <div class="section-title">Education</div>
+    <div class="edu-list">
+      <div class="edu-card">
+        <div class="edu-year">2019</div>
+        <div>
+          <div class="edu-degree">SSLC</div>
+          <div class="edu-institution">Govt. Girls Junior College, Holenarsipura</div>
+          <span class="edu-score">85%</span>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2021</div>
+        <div>
+          <div class="edu-degree">Intermediate — MPC</div>
+          <div class="edu-institution">BGS PU College, SBM L/O Srirampuram, Mysore</div>
+          <span class="edu-score">71%</span>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2025</div>
+        <div>
+          <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
+          <div class="edu-institution">Government First Grade College for Women, Holenarsipura</div>
+          <span class="edu-score">Result Awaited</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STRENGTHS -->
+<section id="strengths">
+  <div class="fade-in">
+    <div class="section-label">My Edge</div>
+    <div class="section-title">Strengths &amp; Values</div>
+    <div class="strengths-grid">
+      <div class="strength-card">
+        <div class="strength-icon">🎯</div>
+        <div class="strength-title">Dedicated</div>
+        <div class="strength-desc">Fully committed to every task assigned and always strive to give 100%.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">⚡</div>
+        <div class="strength-title">Quick Learner</div>
+        <div class="strength-desc">Adapt fast to new tools, technologies, and environments.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">🔥</div>
+        <div class="strength-title">Enthusiastic</div>
+        <div class="strength-desc">Energized under pressure and deadline constraints with consistent results.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">💪</div>
+        <div class="strength-title">Hard Working</div>
+        <div class="strength-desc">Responsible, punctual, and always show up ready to get things done.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">🧠</div>
+        <div class="strength-title">Self-Confident</div>
+        <div class="strength-desc">Believe in my abilities and trust the process of learning and growing.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">🎵</div>
+        <div class="strength-title">Creative Mind</div>
+        <div class="strength-desc">Love reading and music — both fuel creativity and fresh perspectives.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="fade-in">
+    <div class="section-label" style="text-align:center;">Let's Connect</div>
+    <div class="section-title" style="text-align:center; margin-bottom:16px;">Get In Touch</div>
+    <p style="color:var(--muted); font-size:1rem; max-width:440px; margin:0 auto;">
+      I'm actively looking for my first role. Whether you have an opportunity, a project, or just want to say hello — my inbox is open.
+    </p>
+    <div class="contact-cards">
+      <a href="mailto:PoorniPoornima655@gmail.com" class="contact-card">
+        <div class="contact-card-icon">✉️</div>
+        <div class="contact-card-label">Email</div>
+        <div class="contact-card-val">PoorniPoornima655@gmail.com</div>
+      </a>
+      <div class="contact-card">
+        <div class="contact-card-icon">📞</div>
+        <div class="contact-card-label">Phone</div>
+        <div class="contact-card-val">8197730480</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">📍</div>
+        <div class="contact-card-label">Location</div>
+        <div class="contact-card-val">Hole Narasipur, Karnataka</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Designed &amp; built by <span>Poornima S S</span> · 2025 · Karnataka, India
+</footer>
+
+<script>
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Nav active link highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : '';
+    });
+  });
+</script>
+</body>
+</html>
